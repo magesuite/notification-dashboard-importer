@@ -2,6 +2,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="MageSuite_NotificationDashboardImporter">
     	<module name="MageSuite_Importer"/>
-	<module name="MageSuite_NotificationDashboard"/>
+	    <module name="MageSuite_NotificationDashboard"/>
     </module>
 </config>
