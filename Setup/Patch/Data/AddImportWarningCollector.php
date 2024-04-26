@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace MageSuite\NotificationDashboardImporter\Setup\Patch\Data;
 
-class AddImportNotificationCollector implements \Magento\Framework\Setup\Patch\DataPatchInterface
+class AddImportWarningCollector implements \Magento\Framework\Setup\Patch\DataPatchInterface
 {
-    public const COLLECTOR_NAME = 'Product Import';
+    public const COLLECTOR_NAME = 'Import Warning';
 
     protected \MageSuite\NotificationDashboard\Api\Data\CollectorInterfaceFactory $collectorFactory;
     protected \MageSuite\NotificationDashboard\Api\CollectorRepositoryInterface $collectorRepository;
@@ -23,7 +23,7 @@ class AddImportNotificationCollector implements \Magento\Framework\Setup\Patch\D
         $collector = $this->collectorFactory->create()
             ->setName(self::COLLECTOR_NAME)
             ->setIsEnabled(1)
-            ->setSeverity(\MageSuite\NotificationDashboard\Model\Source\Severity::SEVERITY_CRITICAL)
+            ->setSeverity(\MageSuite\NotificationDashboard\Model\Source\Severity::SEVERITY_MAJOR)
             ->setLimitOnDashboard(10)
             ->setAddAdminNotification(0)
             ->setVisibleOnDashboard(1)
