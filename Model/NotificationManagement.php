@@ -1,14 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace MageSuite\NotificationDashboardImporter\Model;
 
 class NotificationManagement
 {
-    public const COLLECTOR_NAME = 'Product Import';
-
     protected \MageSuite\NotificationDashboard\Api\CollectorRepositoryInterface $collectorRepository;
-
     protected \MageSuite\NotificationDashboard\Model\Command\Notification\AddNotification $addNotification;
 
     public function __construct(
@@ -19,17 +17,20 @@ class NotificationManagement
         $this->addNotification = $addNotification;
     }
 
-    public function addNotification(string $message): void
-    {
+    public function addNotification(
+        string $message,
+        string $collectorName = \MageSuite\NotificationDashboardImporter\Setup\Patch\Data\AddImportNotificationCollector::COLLECTOR_NAME
+    ): void {
+        $collector = $this->getCollector($collectorName);
         $this->addNotification->execute(
             $message,
-            $this->getCollector()->getId(),
-            $this->getCollector()->getSeverity()
+            $collector->getId(),
+            $collector->getSeverity()
         );
     }
 
-    public function getCollector(): \MageSuite\NotificationDashboard\Api\Data\CollectorInterface
+    public function getCollector(string $collectorName): \MageSuite\NotificationDashboard\Api\Data\CollectorInterface
     {
-        return $this->collectorRepository->get(self::COLLECTOR_NAME);
+        return $this->collectorRepository->get($collectorName);
     }
 }
