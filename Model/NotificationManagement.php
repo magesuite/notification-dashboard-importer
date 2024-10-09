@@ -22,10 +22,12 @@ class NotificationManagement
         string $collectorName = \MageSuite\NotificationDashboardImporter\Setup\Patch\Data\AddImportNotificationCollector::COLLECTOR_NAME
     ): void {
         $collector = $this->getCollector($collectorName);
+
         $this->addNotification->execute(
             $message,
             $collector->getId(),
-            $collector->getSeverity()
+            $collector->getSeverity(),
+            $collector->getName(),
         );
     }
 
